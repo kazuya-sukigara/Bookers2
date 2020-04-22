@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1></h1>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  　<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+ <heder>
+  <div class ="header">
+  <div class="container">
+    <div class="mb-12 bg-dark text-wihte">
+      <nav class="nav navbar-nav navber-left">
+        <p class="text-wihte">
+        <span>Bookers</span>
+      </nav>
+  <nav>
+  <ul class ='nav navbar-nav navbar-right'>
+
+            <% if user_signed_in? %>
+
+            <li> <span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", user_path(current_user.id) %></span></li> 
+
+             <li> <span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to 'Users',users_path %></span></li>
+
+             <li> <span class="glyphicon glyphicon-book"aria-hidden="true"><%= link_to 'Books', books_path %></span></li>
+
+             <li> <span class="glyphicon glyphicon-log-out"aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete %></span></li>
+
+
+              <% else %>
+
+
+
+              <li><span class="glyphicon glyphicon-home"
+                aria-hidden="true"> <%= link_to "Home" , root_path %></span></li>
+
+              <li><span class="glyphicon glyphicon-link"
+                aria-hidden="true"> <%= link_to "About", home_path %></span></li>
+
+                 <li><span class="glyphicon glyphicon-edit"
+                aria-hidden="true"> <%= link_to "sign up", new_user_registration_path %></span></li>
+
+                <li><span class="glyphicon glyphicon-log-in"
+                aria-hidden="true"> <%= link_to "login", new_user_session_path %> </span></li>
+
+                
+                
+
+              <% end %>
+  </ul>
+</p>
+</nav>
+</div>
+</div>
+</div>
+</heder>
+
+
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+
+    <%= yield %>
+
+
+ 
+
+
+
+
+    
+
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+      <p>CopyRight Infratop.inc</p>
+      </div>
+        </div>
+         </div>
+    </footer>
+
+  </body>
+</html>
